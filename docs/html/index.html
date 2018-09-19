@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+  <title>phpEasyVCS</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-15" />
+  <meta name="language" content="en"/>
+  <meta name="description" content="phpEasyVCS, a simple version control system with WebDAV server in PHP"/>
+  <meta name="keywords" content="version control, revision control, VCS, RCS, php, no database, easy, WebDAV, WebDAV server"/>
+  <style type="text/css">
+    body {
+	    font-family: Serif;
+	    font-size: 12pt;
+	    margin: 2em;
+    }
+
+    h1, .title {
+	    font-family: Tahoma, Sans-Serif;
+	    font-size: 19pt;
+	    color: #202020;
+    }
+
+    h2, .title2 {
+	    font-family: Sans-Serif;
+	    font-size: 15pt;
+	    color: #DE003C;
+	    background-color: #FFFFFF;
+	    margin-bottom: 1em;
+	    margin-top: 1.5em;
+	    border-bottom: 1px solid #658ED0;
+	    padding: 3px;
+	    padding-left: 0px;
+    }
+
+    h3, .title3 {
+	    font-family: Sans-Serif;
+	    font-size: 13pt;
+	    color: #202020;
+	    font-weight: bold;
+	    margin-bottom: 1em;
+	    margin-top: 1.5em;
+    }
+
+    hr {
+	    margin-top: 1em;
+	    margin-bottom: 1em;
+    }
+
+    pre {
+	    font-family: Courier New, Courier, monospace;
+	    font-size: 12pt;
+	    background-color: #FAFAFA;
+	    padding: 0.5em;
+	    margin-left: 5em;
+	    margin-right: 5em;
+    }
+    em {
+	    font-family: Courier New, Courier;
+	    font-size: 12pt;
+	    font-style: normal;
+    }
+
+    .navigation {
+	    float: right;
+	    border: 1px solid #E0E0E0;
+	    padding: 1em;
+	    margin-left: 1em;
+	    line-height: 1.5em;
+	    background-color: #F0F0F0;
+    }
+
+    a {
+	    text-decoration: none;
+	    color: #0000ff;
+    }
+
+    a:hover {
+	    color: #ff0000;
+    }
+
+    table {
+	    border-collapse: collapse;
+	    border: 1px solid gray;
+	    margin-left: 4.5em;
+	    margin-right: 4.5em;
+	    padding: 0;
+    }
+
+    td,th {
+	    border: 1px solid gray;
+	    padding: 3px;
+	    font-family: Sans-Serif;
+	    font-size: 10pt;
+    }
+
+    tt {
+	    font-size: 10pt;
+    }
+
+    ul, ol {
+	    margin-left: 2em;
+	    margin-right: 2em;
+    }
+
+    p {
+	    margin-left: 2em;
+	    margin-right: 2em;
+    }
+  </style>
+
+  <!-- code highlighting -->
+  <link href="prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+
+  <h1>phpEasyVCS User Guide</h1>
+
+  <h2>Table of Contents</h2>
+  <ol>
+	  <li><a href="#introduction" accesskey="1" tabindex="1">Introduction</a></li>
+	  <li><a href="#download" accesskey="D" tabindex="2">Download</a></li>
+	  <li><a href="#installation" accesskey="I" tabindex="3">Installation</a></li>
+	  <li><a href="#usage" accesskey="U" tabindex="4">Usage</a></li>
+	  <li><a href="#problems" accesskey="P" tabindex="5">Problem Solving</a></li>
+	  <li><a href="#comparison" accesskey="C" tabindex="6">Comparison with other VCSes</a></li>
+  </ol>
+
+  <a name="introduction"></a>
+  <h2>Introduction</h2>
+
+  <p>phpEasyVCS is a simple version control system (VCS) and WebDAV server with minimal hosting requirements:</p>
+  <ul>
+  	<li>PHP 5.2+</li>
+  </ul> 
+  <p>No database is needed.</p>
+  <p>Files can be viewed and uploaded with a browser or by WebDAV.</p> 
+  <p>License: <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a></p>
+
+
+  <a name="download"></a>
+  <h2>Download</h2>
+  
+  <p>You can download phpEasyVCS from <a href="http://sourceforge.net/projects/phpeasyvcs/files/" accesskey="S" tabindex="7">Sourceforge</a>.</p>
+
+
+  <a name="installation"></a>
+  <h2>Installation</h2>
+
+  <p>Copy phpEasyVCS to a directory on your server, e.g. <em>easyvcs</em>.</p>
+  <p>Browse to <em>http(s)://your.server/easyvcs-dir/index.php</em> (replace <em>your.server</em> and 
+  <em>easyvcs-dir</em> with your server and installation directory) and fill out the settings form.</p>
+
+  <p>You can also create additional users on the <i>Users</i> tab.</p>
+  
+  <p>Depending on your server settings, the authorization header might not reach PHP. In case of
+     Apache you can add the following rewrite rule to your .htaccess:</p>
+  <pre class="prettyprint">
+RewriteEngine on
+RewriteBase /
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]</pre>
+
+  <p>You can also create additional repositories by</p>
+  <ul>
+    <li>creating a new directory in the data folder (on the same level as the <i>default</i> folder)</li>
+    <li>editing the user(s) to give them access to the additional repository - you have to reenter the password for this</li>
+  </ul>
+  
+
+  <a name="usage"></a>
+  <h2>Usage</h2>
+  
+  <p>Independent of the access type the user has to identify himself with his user name and password. If the user has access to
+  multiple repositories, he must prefix the user name with the repository name and a backslash, e.g. "specialrepository\max", 
+  otherwise it is not sure, into which repository he will be logged in.</p>
+
+  <h3>Web Browser</h3>
+  
+  <p>Browse to <em>http(s)://your.server/easyvcs-dir/index.php</em> (replace <em>your.server</em> and 
+  <em>easyvcs-dir</em> with your server and installation directory).</p>
+  <p>You can browse the VCS, create tags to browse the VCS at a specific date, view versions, revert
+  a file to a version, etc.</p>
+  
+  <p>The web access will work</p>
+  <ul>
+    <li>with Javascript switched off (no syntax highlighting, page reload on many actions),</li>
+    <li>with Javascript activated,</li>
+    <li>with Javascript and Java plugin activated and the Java applet loaded you can upload whole directories
+        and get progress bars during upload.</li>
+  </ul>
+  
+  <p>Using the navigation item <em>Profile</em> the user can change his password and switch the repository, if he has access
+  to multiple repositories.</p>
+  
+  <h3>WebDAV</h3>
+  
+  <p>Use <em>http(s)://your.server/easyvcs-dir/webdav.php</em> for WebDAV access. The actual syntax may vary
+  depending on your operating system and WebDAV program.</p>
+  
+  <p>The root level of the WebDAV drive shows at least the directory <em>current</em>, which represents the
+  currently saved files. You will also see the tags created in the web interface, which represent
+  read-only views of your VCS at a specific time. Additionally you can view the VCS at a specific
+  point in time by manually specifying a date and time in the format <em>YYYY-MM-DD</em> or <em>YYYY-MM-DDTHH:MM</em>,
+  e.g. <em>http://your.server/easyvcs-dir/webdav.php/2011-01-01</em> or
+  <em>http://your.server/easyvcs-dir/webdav.php/2011-01-01T16:00</em> (this might not work with your WebDAV client).</p>
+  
+  <h4>Linux</h4>  
+
+  <p>Enter the following URL in <b>Nautilus</b> or <b>Caja</b>: <em>dav://your.server/easyvcs-dir/webdav.php</em></p>
+  <p>If this does not work, connect explicitely by use of its menu <i>File/Connect to Server</i> and set
+    Server to <em>your.server</em>,  type to <em>WebDAV (HTTP)</em> or <em>Secure WebDAV (HTTPS)</em>, 
+    path to <em>easyvcs-dir/webdav.php</em> and enter your user name and password.</p>
+  <p>You can also connect using <b>Gnome Commander</b>: set type to <em>WebDAV</em>, server to 
+  	<em>your.server</em> and remote directory to <em>/easyvcs-dir/webdav.php</em>.</p>
+  <p>Or install <b>davfs2</b> and mount the WebDAV, e.g.:</p>
+  <pre class="prettyprint">
+sudo apt-get install davfs2
+sudo mkdir /media/easyvcs
+sudo mount -t davfs http://your.server/easyvcs-dir/webdav.php /media/easyvcs</pre>
+  <p>You probably need to add options like <em>-o rw,user,uid=myusername</em> to be able to write, too.</p>
+
+
+  <h4>Windows XP</h4>
+  
+  <p>Preparation:</p>
+  <ul>
+  	<li>Download and install 
+  	<a href="http://www.microsoft.com/downloads/de-de/details.aspx?familyid=17C36612-632E-4C04-9382-987622ED1D64">KB907306</a> 
+  	for web folders</li>
+  	<li>To use basic authentication, set the DWORD registry entry <em>UseBasicAuth</em> in
+  	<em>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient\Parameters</em> to 
+  	<em>1</em> and restart Windows.</li>
+  </ul>
+  <p>Goto explorer - Tools - Map Network Drive - Connect to a Web site and enter
+  http://your.server/easyvcs-dir/webdav.php as URL</p>
+  <p>Or goto explorer - Tools - Map Network Drive and directly add <em>http://your.server/easyvcs-dir/webdav.php</em>
+  as folder (this only seems to work if your phpEasyVCS installation requires no authentication)</p>
+
+
+  <h4>Windows Vista/Windows 7</h4>
+
+  <p>Preparation:</p>
+  <ul>
+  	<li>Go to Settings in your phpEasyVCS instance and make sure that authentication method is Digest.
+	<li>Or, if you really want to use Basic authentication, follow the steps in <a href="http://support.microsoft.com/kb/841215/en-us">KB841215</a>: Set the DWORD registry entry <em>BasicAuthLevel</em> in
+    <em>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient\Parameters</em> to <em>2</em> and restart Windows.
+	</li>
+  </ul>
+  <p>Goto explorer - Map Network Drive - Connect to a Web site and enter
+  <em>http://your.server/easyvcs-dir/webdav.php</em> as URL.</p>
+
+
+  <h4>Alternatives for Windows XP/Windows Vista/Windows 7</h4>  
+
+  <p><a href="http://www.ghisler.com/">TotalCommander</a> has a 
+    <a href="http://ghisler.fileburst.com/fsplugins/webdav.zip">WebDAV plugin</a>.</p>
+  <p><a href="http://www.bitkinex.com/">BitKinex</a> - All-in-one FTP/SFTP/HTTP/WebDAV Client (Freeware)</p>
+  <ul>
+	<li>When setting up the connection you need to specify first the server and then set
+    <em>easyvcs-dir/webdav.php</em> as default directory.</li>
+  </ul>
+  <p><a href="http://www.netdrive.net/">NetDrive</a> (free for home use): You can assign a drive letter
+  to the WebDAV drive and use it like a local drive.</p>
+
+  
+  <a name="problems"></a>
+  <h2>Problem Solving</h2>
+
+  <p>The following is a list of problems with various WebDAV clients:</p>
+  <ul>
+  	<li>With Nautilus you get an error message when moving/renaming (this is a Nautilus bug). 
+  	But the move is executed correctly and you will see it after a refresh (F5).</li>
+  	<li>Windows XP: opening a file from a WebDAV drive, which is NOT mapped to a drive letter, will only
+	work, if the opening program is WebDAV aware, like Microsoft Word.</li>
+	<li>Windows 7: Although connecting to a WebDAV drive without authentication by http works perfectly, 
+	connecting to the same WebDAV drive with basic authentication set up only displays grayed out entries, 
+	clicking on a file or folder will do nothing.</li>
+  </ul>
+  
+
+  <a name="comparison"></a>
+  <h2>Comparison with other VCSes</h2>
+
+  <p>phpEasyVCS is the only VCS which</p>
+  <ul>
+  	<li>is implemented in pure PHP,</li>
+  	<li>stores the data in the file system, and</li>
+  	<li>offers WebDAV access.</li>
+  </ul> 
+  <p>As to my knowledge there is no other VCS even offering two of these features.</p>
+  
+</body></html>

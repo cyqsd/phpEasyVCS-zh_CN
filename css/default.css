@@ -1,0 +1,580 @@
+html, body, h1, h2, h3, h4, p, ul, li, pre {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+}
+input, button {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+img {
+  border: 0 none; /* for IE */
+}
+  
+html, body {
+  height: 100%;
+}
+body {
+  overflow-y: scroll;
+}
+#header {
+  border-bottom:2px solid #cccccc;
+  position: relative;
+}
+#header h1 {
+  font-size: 170%;
+  margin: 0 8px 5px 8px;
+  padding-top: 15px;
+  color: #009865;
+}
+ul.menu {
+  list-style: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+ul.menu li {
+  float: left;
+  border-left:1px solid #cccccc;
+  width: 10em;
+}
+ul.menu li a {
+  display: block;
+  text-decoration: none;
+  color: #404040;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+ul.menu li a:hover {
+  background-color: #009865;
+  color: white;
+  font-weight: bold;
+}
+#container {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+}
+#content {
+  padding-bottom: 40px;
+  position: relative;
+}
+#content h2, #content h3, #content h4, #content p, #content ul, #content pre {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+#content h2 {
+  font-size: 150%;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  clear: left;
+}
+#content h2 a {
+  font-size: 100%;
+}
+#content h3 {
+  font-size: 130%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#content h4 {
+  font-size: 120%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#content p, #content ul {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#content p img {
+  max-width: 100%;
+}
+
+#content ul {
+  list-style: disc;
+  list-style-position: outside;
+}
+#content ul li {
+  margin-left: 25px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+#content em {
+  font-family: Courier New, Courier;
+  font-style: normal;
+}
+#content ul.actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  list-style: none;
+  float: right;
+}
+#content ul.actions li {
+  float: left;
+  margin: 0;
+  border-left:1px solid #cccccc;
+}
+#content ul.actions li a {
+  display: block;
+  text-decoration: none;
+  color: #404040;
+  padding: 5px 10px;
+  font-size: 12px;
+  outline-style: none;
+}
+#content ul.actions li a.toggle {
+  padding: 5px 10px 5px 36px;
+}
+#content ul.actions li a.toggle {
+  background: url('../images/unchecked.png') no-repeat 10px center;
+}
+#content ul.actions li a.toggle.on {
+  background: url('../images/checked.png') no-repeat 10px center;
+}
+#content ul.actions li:hover {
+  background-color: #009865;
+}
+#content ul.actions li a:hover {
+  color: white;
+}
+
+table.list {
+  width:100%;
+  border-collapse:collapse;
+}
+table.list td {
+  font-size:1em;
+  border: 1px solid #cccccc;
+  padding: 4px 7px 4px 7px;
+  vertical-align: middle;
+}
+table.list td a.deleted, table.list td.deleted {
+  color: #808080 !important;
+}
+table.list td.check {
+  text-align: center;
+}
+table.list td.name img,
+table.list td.name img.open,
+table.list td.name img.closed {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+table.list td.name img.refresh {
+  display: block;
+  float: right;
+  margin-left: 10px;
+}
+table.list td.radio {
+  text-align: center;
+  width: 2em;	
+}
+table.list td.version {
+  text-align: center;
+  width: 4em;
+}
+table.list td.size {
+  text-align: right;
+  width: 4em;
+  white-space: nowrap;
+}
+table.list td.date {
+  text-align: right;
+  width: 8em;
+  white-space: nowrap;
+}
+table.list td.link, table.list td.nolink {
+  width: 16px;
+  padding: 0;
+}
+table.list td.link a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  width: 16px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin: 0;
+  color: #0000EE;
+  outline-style: none;
+}
+table.list tr.hidden,
+table.list.hide-identical tr.IDENTICAL,
+table.list tr.open img.closed,
+table.list tr.closed img.open {
+  display: none;
+}
+table.list td.link:hover,
+table.list tr.COPY_TO_LOCAL td.link.COPY_TO_LOCAL,
+table.list tr.COPY_TO_REMOTE td.link.COPY_TO_REMOTE {
+  background-color:#009865;
+}
+table.list td.link.delete:hover, 
+table.list td.link.revert:hover,
+table.list tr.MERGE td.link.COPY_TO_LOCAL,
+table.list tr.MERGE td.link.NONE,
+table.list tr.MERGE td.link.COPY_TO_REMOTE,
+table.list tr.DELETE_LOCAL td.link.DELETE_LOCAL,
+table.list tr.DELETE_BOTH td.link.DELETE_LOCAL,
+table.list tr.DELETE_BOTH td.link.DELETE_REMOTE,
+table.list tr.DELETE_REMOTE td.link.DELETE_REMOTE {
+  background-color:#D94136;
+}
+table.list td.link:hover a,
+table.list tr.MERGE td.link.COPY_TO_LOCAL a,
+table.list tr.MERGE td.link.NONE a,
+table.list tr.MERGE td.link.COPY_TO_REMOTE a,
+table.list tr.COPY_TO_LOCAL td.link.COPY_TO_LOCAL a,
+table.list tr.COPY_TO_REMOTE td.link.COPY_TO_REMOTE a,
+table.list tr.DELETE_LOCAL td.link.DELETE_LOCAL a,
+table.list tr.DELETE_BOTH td.link.DELETE_LOCAL a,
+table.list tr.DELETE_BOTH td.link.DELETE_REMOTE a,
+table.list tr.DELETE_REMOTE td.link.DELETE_REMOTE a {
+  color:#ffffff;
+  font-weight: bold;
+}
+table.list th {
+  font-size:13px;
+  text-align:left;
+  padding: 5px 7px 4px 7px;
+  border: 1px solid #CCCCCC;
+  background-color:#009865;
+  color:#ffffff;
+}
+table.list th.side {
+  text-align: center;
+}
+table.list th.version {
+  width: 4em;
+}
+table.list th.size {
+  width: 4em;
+}
+table.list th.date {
+  width: 8em;
+}
+table.list th.action {
+  width: 2px;
+  text-align: center;
+}
+table.list th input {
+  /* show submit button like a link */
+  font-size:13px;
+  width: auto;
+  background-color:#009865;
+  border: 0 none;
+  color: #e0e0e0;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+table.list th.check, table.list td.check {
+  width: 2em;
+}
+table.list th.check {
+  padding: 0;
+}
+#content .pulldown {
+  text-decoration: underline;
+  cursor: pointer;
+  position: relative;
+}
+#content .pulldown div {
+  display: block;
+  padding: 3px 7px;
+  height: 100%;
+  color: #E0E0E0;
+  text-align: center;
+}
+#content .pulldown ul {
+  display: none;
+  position: absolute;
+  /* left: -8px; */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  background-color:#009865;
+}
+#content .pulldown:hover ul, #content .pulldown.open ul {
+  display: block;
+}
+#content .pulldown ul li {
+  margin: 0;
+  border: 0;
+  padding: 3px 7px;
+  /* border-bottom: 1px white solid; */
+  white-space: nowrap;
+  color: #E0E0E0;
+}
+#content .pulldown ul li input {
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+  border: 0 none;
+}
+#content .pulldown ul li:hover, #content .pulldown ul li input:hover {
+  color: white;
+}
+table.list th a {
+  color: #e0e0e0;
+}
+table.list tbody tr:hover td {
+  background-color: #dde4e2;
+}
+table.list tr:nth-child(even) td {
+  color:#000000;
+  background-color:#f9f9f9;
+}
+
+table.form td {
+  font-size:1em;
+  padding: 4px 7px 4px 7px;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+table.form td + td + td {
+  white-space: normal;
+}
+
+div.msg {
+  float: left;
+  clear: left;
+  border: solid 2px #009865;
+  padding:3px 7px 2px 7px;
+  color: #009865;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 8px;
+}
+div.error {
+  float: left;
+  clear: left;
+  border: solid 2px red;
+  padding:3px 7px 2px 7px;
+  color: red;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 8px;
+}
+
+pre {
+  border: black solid 1px;
+  padding: 5px 10px;
+}
+pre *, pre.prettyprint, pre.prettyprint * {
+  font-family: monospace;
+}
+pre del, pre ins, pre em {
+  display: block;
+}
+pre em del, pre em ins {
+  display: inline;
+}
+pre del, pre em del {
+  background-color: #ecb89c;
+}
+pre ins, pre em ins {
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #bbdce8;
+}
+pre em {
+  background-color: #e8ec9c;
+}
+
+#progress-dialog .progress-bar {
+  width:0%; 
+  height:20px; 
+  background-color:#84BFAB;
+}
+.progress {
+  position:relative; 
+  height:20px;
+  margin: 5px 0;
+}
+.progress .progress-bar {
+  position:absolute; 
+  width:0%; 
+  height:100%; 
+  z-index:100; 
+  background-color:#84BFAB;
+}
+.progress .progress-text {
+  position:absolute; 
+  width:100%; 
+  height:100%; 
+  z-index:101; 
+  text-align:center;
+  padding: 3px 10px;
+}
+.progress-line {
+  height: 2px;
+  width: 0%;
+  background-color: #84BFAB;
+}
+.progress-line.failed {
+  background-color: #D94136;
+}
+
+.dialog-background {
+	display: block;
+	position: fixed;
+	background: black;
+	opacity: 0.3;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	z-index: 8000;
+}
+.dialog-container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 0;
+	background: none;
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	z-index: 9010;
+}
+.dialog {
+	position: relative;
+	background: white;
+	opacity: 1;
+	width: 400px;
+	top: 80px;
+	z-index: 8020;
+	border: 1px black solid; 
+	padding:5px 10px 15px 10px;
+	margin: auto;
+	box-shadow: 10px 10px 20px #000000;
+	-moz-box-shadow:10px 10px 20px #000000;
+	-webkit-box-shadow:10px 10px 20px #000000;
+}
+.dialog form {
+    margin: 0;
+    padding: 0;
+}
+.dialog img.close {
+    float: right;
+}
+.dialog label, .dialog input, .dialog textarea, .dialog div.applet, .dialog div.progress {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+.dialog label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+.dialog div.filelist {
+  max-height: 170px;
+  overflow-y: auto; 
+  margin-top:5px;
+}
+.dialog input {
+  margin-bottom: 5px;
+}
+.dialog input.submit {
+  margin-top: 10px;
+}
+.dialog .delete-item, 
+.dialog .copy-item, 
+.dialog .move-item {
+  display: none;
+}
+.dialog.delete-dialog .delete-item,
+.dialog.copy-dialog .copy-item, 
+.dialog.move-dialog .move-item {
+  display: inherit;
+}
+
+div.CodeMirror {
+	line-height: 18px;
+	border: 1px solid #cccccc;
+}
+
+#tree {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 2px;
+}
+#tree ul {
+  margin: 0 0 0 0;
+  padding: 2px 0 2px 0;
+}
+#tree ul li {
+  position: relative;
+  list-style: none;
+  padding: 1px 0 1px 20px;
+  margin: 0 0 0 0;
+}
+#tree li input {
+  position: absolute;
+  left: 40px;
+  top: 2px;
+  z-index: 2;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+#tree li input.toggle {
+  left: 6px;
+  top: 2px;
+  cursor: pointer;
+  opacity: 0;
+  height: 1em;
+  width: 1em;
+}
+#tree li label {
+  display: block;
+  background: url(../images/folder.png) 0 0 no-repeat;
+  padding: 0 0 0 37px;
+  margin: 0 0 0 0;
+  cursor: pointer;
+}
+#tree li:not(#foo) ul {
+  background: url(../images/toggle_plus.png) 0 0 no-repeat;
+  margin: -14px 0 0 -14px;
+  padding: 14px 0 0 14px;
+}
+#tree li:not(#foo) input:checked + ul {
+  background: url(../images/toggle_minus.png) 0 0 no-repeat;
+}
+#tree li:not(#foo) input + ul > li {
+  display: none;
+}
+#tree li:not(#foo) input:checked + ul > li {
+  display: list-item;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid #cccccc;
+  padding: 0;
+  color: #999999;
+}
+#footer a {
+  color: #999999;
+}
+#footer .copyright {
+  padding: 3px 8px 3px 8px;
+  float: left;
+}
+#footer .about {
+  padding: 3px 8px 3px 8px;
+  float: right;
+}
+

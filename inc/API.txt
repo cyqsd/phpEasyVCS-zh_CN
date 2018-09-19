@@ -1,0 +1,94 @@
+This is a description of the VCS API implemented by filevcs.class.php.
+
+Constants used, if defined
+--------------------------
+FORBID_PATTERN
+DELETE_PATTERN
+DELETE_EMPTY_FILES
+WORKAROUND_SECONDS
+WORKAROUND_MAXSIZE
+
+Constants defined
+-----------------
+VCS_SUCCESS
+VCS_NOACTION
+VCS_READONLY
+VCS_NOTFOUND
+VCS_LOCKED
+VCS_FORBIDDEN
+VCS_EXISTS
+VCS_PARTIAL
+VCS_ERROR
+
+FileVCS
+=======
+addDirectory($dir, $name, $comment='') => new version or VCS_xxx
+addFile($dir, $name, $tmpfile, $comment='') => new version or VCS_xxx
+addTag($name, $date=null) => VCS_xxx
+copy($sourcedir, $sourcename, $targetdir, $targetname, $overwrite=false, $comment='') => new version or VCS_xxx
+delete($dir, $name, $comment='') => new version or VCS_xxx
+deleteTag($name) => VCS_xxx
+getEntry($dir, $name, $version=null, $includeDeleted=false) => FileVCSFile or FileVCSDirectory or null
+getHistory($dir, $name) => array of FileVCSFile or FileVCSDirectory
+getListing($dir, $includeDeleted=false, $withHistory=false) => FileVCSListing
+getRoot() => FileVCSRoot
+getTag() => VCSTag
+getTags() => array of VCSTag
+isReadOnly() => bool
+move($sourcedir, $sourcename, $targetdir, $targetname, $overwrite=false, $comment='') => new version or VCS_xxx
+revertFile($dir, $name, $version, $comment='') => new version or VCS_xxx
+-beta- revertToDate($dir, $date=null, $comment='') => VCS_xxx
+setTag($tagOrDate)
+undeleteDirectory($dir, $name, $comment='') => new version or VCS_xxx
+
+FileVCSEntry
+============
+dir => string
+name => string
+version => int
+type => FILEVCS_DIR or FILEVCS_FILE
+isDirectory => bool
+isFile => bool
+deleted => bool
+path => string
+date => int (UNIX timestamp)
+creationdate => int (UNIX timestamp)
+comment => string
+user => string
+exists() => bool
+
+FileVCSFile extends FileVCSEntry
+================================
+ext => string
+mimetype => string
+size => int (in bytes)
+versions => array of FileVCSFile
+stream => stream
+copyof => FileVCSFile or null
+movedfrom => FileVCSFile or null
+movedto => FileVCSFile or null
+
+FileVCSDirectory extends FileVCSEntry
+=====================================
+isEmpty() => bool
+copyof => FileVCSDirectory or null
+movedfrom => FileVCSDirectory or null
+movedto => FileVCSDirectory or null
+
+FileVCSListing 
+==============
+dir => string
+directories => array of FileVCSDirectory
+files => array of FileVCSFile
+
+FileVCSRoot
+===========
+dir => ''
+name => ''
+date => int (UNIX timestamp)
+creationdate => int (UNIX timestamp)
+
+VCSTag
+======
+name => string
+date => int (UNIX timestamp)
